@@ -79,6 +79,10 @@ export default function App() {
 
 
 
+            const countryDemoLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/0",
+            });
+
             const stateDemoLayer = new FeatureLayer({
                 url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/1",
             });
@@ -102,6 +106,7 @@ export default function App() {
             const demoGroupLayer = new GroupLayer({
                 title: "Demographics Group Layer",
                 layers: [
+                    countryDemoLayer,
                     stateDemoLayer,
                     countyDemoLayer,
                     zipDemoLayer,
@@ -110,13 +115,15 @@ export default function App() {
                 ],
                 visible: true
             })
+            
+            const popUpDemoBlock = PopUpDemo({ name: "Block #{NAME} in {STATE_NAME}" }, view) 
+            const popUpDemoTract = PopUpDemo({ name: "Tract {NAME} in {STATE_NAME}" }, view) 
+            const popUpDemoZip = PopUpDemo({ name: "{ID}, {STATE_NAME}" }, view) 
+            const popUpDemoCounty = PopUpDemo({ name: "{NAME}, {ST_ABBREV}" }, view) 
+            const popUpDemoState = PopUpDemo({ name: "{NAME}" }, view) 
+            const popUpDemoCountry = PopUpDemo({ name: "{NAME}" }, view) 
 
-            const popUpDemoTract = PopUpDemo({ name: "{NAME} in {STATE}" }, view) 
-            const popUpDemoCounty = PopUpDemo({ name: "{NAME} in {STATE}" }, view) 
-            const popUpDemoState = PopUpDemo({ name: "{NAME} in {STATE}" }, view) 
-            const popUpDemoBlock = PopUpDemo({ name: "{NAME} in {STATE}" }, view) 
-            const popUpDemoZip = PopUpDemo({ name: "{NAME} in {STATE}" }, view) 
-
+            countryDemoLayer.popupTemplate = popUpDemoCountry
             stateDemoLayer.popupTemplate = popUpDemoState
             countyDemoLayer.popupTemplate = popUpDemoCounty
             tractDemoLayer.popupTemplate = popUpDemoTract

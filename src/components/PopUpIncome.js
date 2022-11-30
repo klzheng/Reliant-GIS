@@ -91,21 +91,46 @@ const PopUpIncome = (title, view) => {
         ],
         fieldInfos: [
             {
+                fieldName: "B19049_001E",
+                label: "Median Household Income in the past 12 Months",
+                format: {
+                    digitSeparator: true
+                }
+            },
+            {
+                fieldName: "B19053_001E",
+                label: "Total Number of Households",
+                format: {
+                    digitSeparator: true
+                }
+            },
+            {
                 fieldName: "B19049_002E",
                 label: "< 25 years old ",
+                format: {
+                    digitSeparator: true
+                }
             },
             {
                 fieldName: "B19049_003E",
                 label: "25 - 44 years old",
+                format: {
+                    digitSeparator: true
+                }
             },
             {
                 fieldName: "B19049_004E",
                 label: "45 - 65 years old",
-
+                format: {
+                    digitSeparator: true
+                }
             },
             {
                 fieldName: "B19049_005E",
                 label: "> 65 years old",
+                format: {
+                    digitSeparator: true
+                }
             }
         ],
     }
