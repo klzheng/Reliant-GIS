@@ -6,7 +6,9 @@ const PopUpDemo = (title, view) => {
         title: title.name,
         alignment: "top-right",
         content: [
+            // search bar
             SearchBar(view),
+            // Pie chart
             {
                 type: "media",
                 mediaInfos: [
@@ -29,6 +31,7 @@ const PopUpDemo = (title, view) => {
                 type: "text",
                 text: "There are <b>{MALES_CY}/{FEMALES_CY}</b> males to females, with a median age of <b>{MEDMAGE_CY}</b> and <b>{MEDFAGE_CY}</b>, respectively.",
             },
+            // Column chart
             {
                 type: "media",
                 mediaInfos: [
@@ -42,6 +45,7 @@ const PopUpDemo = (title, view) => {
                     }
                 ]
             },
+            // Pie chart
             {
                 type: "media",
                 mediaInfos: [
@@ -55,6 +59,7 @@ const PopUpDemo = (title, view) => {
                     }
                 ]
             },
+            // Data table
             {
                 type: "fields",
                 title: "Population by Race",
@@ -124,6 +129,7 @@ const PopUpDemo = (title, view) => {
                     },
                 ],
             },
+            // Pie chart
             {
                 type: "media",
                 mediaInfos: [
@@ -138,14 +144,14 @@ const PopUpDemo = (title, view) => {
                 ]
             },
             {
-                type: "text",
+                type: "text", // eslint-disable-next-line
                 text: "The median household income is <b>${MEDHINC_CY}</b> and the Income Per Capita is <b>${PCI_CY}</b>. The median home value is around <b>${MEDVAL_CY}</b>"
             },
             {
                 type: "text",
                 text: "There is a reported <b>{VACANT_CY}</b> number of vacant housing units of the total <b>{TOTHU_CY}</b> housing units in this area."
             },
-
+        // Labelling data
         ],
         fieldInfos: [
             {

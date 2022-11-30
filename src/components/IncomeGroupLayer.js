@@ -4,6 +4,7 @@ import PopUpIncome from "./PopUpIncome";
 
 
 const IncomeGroupLayer = (view) => {
+    // creating all feature layers
     const tractIncomeLayer = new FeatureLayer({
         title: "Household Income",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/2"
@@ -23,7 +24,7 @@ const IncomeGroupLayer = (view) => {
     const incomeGroupLayer = new GroupLayer({
         title: "Income Group Layer",
         layers: [tractIncomeLayer, countyIncomeLayer, stateIncomeLayer],
-        visible: false
+        visible: true,
     })
 
     // popups for each income feature layer
@@ -36,6 +37,7 @@ const IncomeGroupLayer = (view) => {
     countyIncomeLayer.popupTemplate = popUpCounty
     stateIncomeLayer.popupTemplate = popUpState
 
+    
     return incomeGroupLayer
 }
 

@@ -4,6 +4,7 @@ import PopUpDemo from "./PopUpDemo";
 
 
 const DemographicsGroupLayer = (view) => {
+    // creating all the feature layers
     const countryDemoLayer = new FeatureLayer({
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/0",
     });
@@ -28,6 +29,7 @@ const DemographicsGroupLayer = (view) => {
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/5"
     });
 
+    // grouping feature layers
     const demoGroupLayer = new GroupLayer({
         title: "Demographics Group Layer",
         layers: [
@@ -38,9 +40,10 @@ const DemographicsGroupLayer = (view) => {
             tractDemoLayer,
             blockDemoLayer
         ],
-        visible: true
+        visible: false,
     })
     
+    // creating pop up templates 
     const popUpDemoBlock = PopUpDemo({ name: "Block #{NAME} in {STATE_NAME}" }, view) 
     const popUpDemoTract = PopUpDemo({ name: "Tract {NAME} in {STATE_NAME}" }, view) 
     const popUpDemoZip = PopUpDemo({ name: "{ID}, {STATE_NAME}" }, view) 
@@ -48,6 +51,7 @@ const DemographicsGroupLayer = (view) => {
     const popUpDemoState = PopUpDemo({ name: "{NAME}" }, view) 
     const popUpDemoCountry = PopUpDemo({ name: "{NAME}" }, view) 
 
+    // adding pop up templates to feature layers
     countryDemoLayer.popupTemplate = popUpDemoCountry
     stateDemoLayer.popupTemplate = popUpDemoState
     countyDemoLayer.popupTemplate = popUpDemoCounty
@@ -55,6 +59,7 @@ const DemographicsGroupLayer = (view) => {
     blockDemoLayer.popupTemplate = popUpDemoBlock
     zipDemoLayer.popupTemplate = popUpDemoZip
 
+    
     return demoGroupLayer
 }
 

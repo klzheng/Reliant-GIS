@@ -21,8 +21,8 @@ const SearchBar = (view) => {
         }
     })
 
+
     return contentWidget
 }
-
 
 export default SearchBar

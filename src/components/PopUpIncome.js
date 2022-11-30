@@ -5,7 +5,7 @@ const PopUpIncome = (title, view) => {
         title: title.name,
         alignment: "top-right",
         content: [
-            SearchBar(view),
+            SearchBar(view), // search bar
             {
                 type: "text", // eslint-disable-next-line
                 text: "The median household income in this area is estimated to be <b>${B19049_001E}</b>.",
@@ -14,6 +14,7 @@ const PopUpIncome = (title, view) => {
                 type: "text",
                 text: "The total number of households in this area is estimated to be {B19053_001E}.",
             },
+            // Column chart
             {
                 type: "media",
                 mediaInfos: [
@@ -27,6 +28,7 @@ const PopUpIncome = (title, view) => {
                     }
                 ]
             },
+            // Table of info
             {
                 type: "fields",
                 fieldInfos: [
@@ -89,6 +91,7 @@ const PopUpIncome = (title, view) => {
                 ],
             },
         ],
+        // Labelling Data
         fieldInfos: [
             {
                 fieldName: "B19049_001E",
