@@ -41,6 +41,7 @@ const DemographicsGroupLayer = (view) => {
             blockDemoLayer
         ],
         visible: false,
+        opacity:.5,
     })
     
     // creating pop up templates 
@@ -59,7 +60,7 @@ const DemographicsGroupLayer = (view) => {
     blockDemoLayer.popupTemplate = popUpDemoBlock
     zipDemoLayer.popupTemplate = popUpDemoZip
 
-    
+
     return demoGroupLayer
 }
 

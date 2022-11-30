@@ -1,5 +1,6 @@
 import CustomContent from "@arcgis/core/popup/content/CustomContent"
 import Search from "@arcgis/core/widgets/Search"
+import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol"
 
 
 const SearchBar = (view) => {
@@ -7,6 +8,12 @@ const SearchBar = (view) => {
     const searchWidget = new Search({
         view: view,
     })
+
+    searchWidget.allSources.on("after-add", ({ item }) => {
+        item.resultSymbol = new SimpleMarkerSymbol({
+          size: 0
+        });
+      });
 
     // clears search results whenever a search is completed
     searchWidget.on("search-complete", () => {
