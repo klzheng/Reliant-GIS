@@ -110,7 +110,7 @@ No account required! Just visit the site and get started right away!
 
 1. Create .env file
 
-2. Create an ArcGIS Developer account and store your API key in the .env file)  
+2. Create an ArcGIS Developer account and store your API key in the .env file  
 
 <br />
 
