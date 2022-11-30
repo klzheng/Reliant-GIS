@@ -55,7 +55,6 @@ No account required! Just visit the site and get started right away!
 
 
 
-<br /> 
 
 <p align="right">(<a href="#tcdb" style="text-decoration:none;">↑</a>)</p>
 
