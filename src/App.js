@@ -2,14 +2,11 @@ import React, { useRef, useEffect } from "react";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import Home from "@arcgis/core/widgets/Home"
-import GroupLayer from "@arcgis/core/layers/GroupLayer"
 import esriConfig from "@arcgis/core/config.js"
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
-import PopUpIncome from "./components/PopUpIncome";
-import FeatureLayerIncome from "./components/FeatureLayerIncome";
+import IncomeGroupLayer from "./components/IncomeGroupLayer";
+import DemographicsGroupLayer from "./components/DemographicsGroupLayer"
 import './index.css';
-import PopUpDemo from "./components/PopUpDemo";
 
 
 
@@ -42,93 +39,44 @@ export default function App() {
                 },
             });
 
-            // creating income feature layers
-            const tractIncomeLayer = new FeatureLayer({
-                title: "Household Income",
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/2"
-            })
+            // // creating income feature layers
+            // const tractIncomeLayer = new FeatureLayer({
+            //     title: "Household Income",
+            //     url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/2"
+            // })
 
-            const countyIncomeLayer = new FeatureLayer({
-                title: "Household Income",
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/1"
-            })
+            // const countyIncomeLayer = new FeatureLayer({
+            //     title: "Household Income",
+            //     url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/1"
+            // })
 
-            const stateIncomeLayer = new FeatureLayer({
-                title: "Household Income",
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/0"
-            })
+            // const stateIncomeLayer = new FeatureLayer({
+            //     title: "Household Income",
+            //     url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Median_Income_by_Race_and_Age_Selp_Emp_Boundaries/FeatureServer/0"
+            // })
 
-            // creating a group layer from each of the income feature layers
-            const incomeGroupLayer = new GroupLayer({
-                title: "Income Group Layer",
-                layers: [tractIncomeLayer, countyIncomeLayer, stateIncomeLayer],
-                visible: false
-            })
+            // // creating a group layer from each of the income feature layers
+            // const incomeGroupLayer = new GroupLayer({
+            //     title: "Income Group Layer",
+            //     layers: [tractIncomeLayer, countyIncomeLayer, stateIncomeLayer],
+            //     visible: false
+            // })
 
-            // popups for each income feature layer
-            const popUpTract = PopUpIncome({ name: "{NAME} in {STATE}" }, view)
-            const popUpCounty = PopUpIncome({ name: "{NAME} in {STATE}" }, view)
-            const popUpState = PopUpIncome({ name: "{NAME}" }, view)
+            // // popups for each income feature layer
+            // const popUpTract = PopUpIncome({ name: "{NAME} in {STATE}" }, view)
+            // const popUpCounty = PopUpIncome({ name: "{NAME} in {STATE}" }, view)
+            // const popUpState = PopUpIncome({ name: "{NAME}" }, view)
 
-            // adding popup to each of the feature layers
-            tractIncomeLayer.popupTemplate = popUpTract
-            countyIncomeLayer.popupTemplate = popUpCounty
-            stateIncomeLayer.popupTemplate = popUpState
-
-
+            // // adding popup to each of the feature layers
+            // tractIncomeLayer.popupTemplate = popUpTract
+            // countyIncomeLayer.popupTemplate = popUpCounty
+            // stateIncomeLayer.popupTemplate = popUpState
 
 
 
-            const countryDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/0",
-            });
 
-            const stateDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/1",
-            });
 
-            const countyDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/2"
-            });
-
-            const zipDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/3"
-            });
-
-            const tractDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/4"
-            });
-
-            const blockDemoLayer = new FeatureLayer({
-                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/AGOL_Base_2018_Final/FeatureServer/5"
-            });
-
-            const demoGroupLayer = new GroupLayer({
-                title: "Demographics Group Layer",
-                layers: [
-                    countryDemoLayer,
-                    stateDemoLayer,
-                    countyDemoLayer,
-                    zipDemoLayer,
-                    tractDemoLayer,
-                    blockDemoLayer
-                ],
-                visible: true
-            })
             
-            const popUpDemoBlock = PopUpDemo({ name: "Block #{NAME} in {STATE_NAME}" }, view) 
-            const popUpDemoTract = PopUpDemo({ name: "Tract {NAME} in {STATE_NAME}" }, view) 
-            const popUpDemoZip = PopUpDemo({ name: "{ID}, {STATE_NAME}" }, view) 
-            const popUpDemoCounty = PopUpDemo({ name: "{NAME}, {ST_ABBREV}" }, view) 
-            const popUpDemoState = PopUpDemo({ name: "{NAME}" }, view) 
-            const popUpDemoCountry = PopUpDemo({ name: "{NAME}" }, view) 
-
-            countryDemoLayer.popupTemplate = popUpDemoCountry
-            stateDemoLayer.popupTemplate = popUpDemoState
-            countyDemoLayer.popupTemplate = popUpDemoCounty
-            tractDemoLayer.popupTemplate = popUpDemoTract
-            blockDemoLayer.popupTemplate = popUpDemoBlock
-            zipDemoLayer.popupTemplate = popUpDemoZip
 
 
             // creating layer list widget
@@ -139,8 +87,8 @@ export default function App() {
 
             
             // adding the group layer to map
-            map.add(demoGroupLayer)
-            map.add(incomeGroupLayer)
+            map.add(DemographicsGroupLayer(view))
+            map.add(IncomeGroupLayer(view))
             
             // creating home icon and adding it to UI
             const homeIcon = new Home({
